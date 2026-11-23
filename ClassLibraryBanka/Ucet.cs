@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ClassLibraryBanka
 {
     public class Ucet
     {
-        public static readonly int KODBANKY=1234;
+        public static readonly int KODBANKY = 1234;
         protected string cislo;
         protected string majitel;
         protected double zustatek;
@@ -34,16 +34,11 @@ namespace ClassLibraryBanka
         }
         public virtual string Vybrat(double vybranaCastka)
         {
-            if (this.zustatek>=vybranaCastka)
-            {
+            if (this.zustatek >= vybranaCastka)
                 return "Tolik penez vybrat nemuzete";
-            }
-            else
-            {
-                this.zustatek -= vybranaCastka;
-                //return "Vybrano: " + vybranaCastka + " \nnovy zustatek: " + this.zustatek;
-                return $"Vybrano: {vybranaCastka} \nnovy zustatek: {this.zustatek}";
-            }
+
+            this.zustatek -= vybranaCastka;
+            return $"Vybrano: {vybranaCastka} \nnovy zustatek: {this.zustatek}";
         }
         public virtual string PripsatUrok()
         {
