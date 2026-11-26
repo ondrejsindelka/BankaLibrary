@@ -9,19 +9,24 @@ namespace ClassLibraryBanka
     public class SporiciUcet : Ucet
     {
         private double urokovaSazba;
-        public SporiciUcet(string cislo, string majitel) : base(cislo, majitel)
+        public SporiciUcet(string cislo, string majitel, double urokovaSazba) : base(cislo, majitel)
         {
+            this.urokovaSazba = urokovaSazba;
         }
-        public SporiciUcet(string cislo, string majitel, double zustatek) : base(cislo, majitel, zustatek)
+        public SporiciUcet(string cislo, string majitel, double zustatek, double urokovaSazba) : base(cislo, majitel, zustatek)
         {
+            this.urokovaSazba = urokovaSazba;
         }
         public override string ToString()
         {
             return $"Sporici ucet [{VratCisloUctuCele()}, majitel: {this.majitel}, zustatek: {this.zustatek} Kc, urokova sazba: {this.urokovaSazba}%]";
         }
-        public string PripsatUrok()
+
+        public override string PripsatUrok()
         {
-            return "";
+            double pripsanyUrok = this.zustatek * (urokovaSazba / 100);
+            this.zustatek += pripsanyUrok;
+            return $"Pripsan urok: {pripsanyUrok} \nnovy zustatek: {this.zustatek}";
         }
     }
 }
